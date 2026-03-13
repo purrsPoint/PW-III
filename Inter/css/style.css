@@ -1,9 +1,30 @@
-*{
+* {
     border: 0;
 }
-.content{
-    align-items:;
+
+.content {
+    background-color: rgba(128, 128, 128, 0.715);
+    display: table-column;
+    height: 100%;
+    text-align: center;
+    position: fixed;
 }
-.ladobar{
-    background-color: gray;
+
+.ladobar ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.ladobar li {
+    background-color: lightgray;
+    display: block;
+    width: 100%;
+    padding: 30px;
+    border-bottom: solid 2px;
+    border-color: solid black;
+}
+
+.ladobar ul {
+    list-style: none;
 }
