@@ -30,21 +30,47 @@
     align-items: center;
 }
 
-.banner{
-   
+.banner_placar{
+    
     margin-top: 100px;
     width: 70%;
-    background-color: #C6E4A7;
+    background-color: #e1fdb2;
 
 }
-.banner h1{
+.banner_placar h3,h2{
+    text-align: center;
+}
+.banner_placar h1{
     text-align: center;
     font-size: 80px;
 }
-.banner p{
-    background-color: #DBEBC0 ;
-    color: #6F8F4F;
+.banner_placar p{
+    background-color: #C6E4A7;
+    color: #000000;
     display: inline-block;
+}
+
+.banner_sgnt{
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 100px;
+    width: 70%;
+    background-color: #e1fdb2;
+}
+.banner_sgnt p{
+    background-color: #C6E4A7   ;
+}
+.cont{
+    margin-top: 10px;
+    display: flex;
+
+    border-bottom: 1px solid black ;
+
+}
+.cont-inter{
+    margin-left: 30px;
+    margin-top: 10px;
 }
 /*barra lateral*/
 .ladobar{
