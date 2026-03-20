@@ -5,24 +5,48 @@
     box-sizing: border-box;
     font-family:"Datatype", monospace ;
 }
+a{
+    text-decoration: none;
+    color: inherit;
+}
 /*barra de cima*/
 .navbar{
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    position: fixed;
     height: 100px;
+
     display: flex;
-    background-color: #DBEBC0;
     align-items: center;
     justify-content: center;
+    
+    background-color: #DBEBC0;
     border-bottom: 1px solid gray;
 }
+.search_bar{
+    height: 40px;
+    width: 200px;
+    border: none;
+    padding: 20px;
+    border-radius: 20px;
+}
+.image_holder{
+    height: 40px;
+    width: 40px;
+    border-radius: 40px;
 
+    background-color: #6F8F4F;
+
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
 /*todos items no centro*/
 .content{
     margin-top: 100px;
-    margin-left: 150px;
+    margin-left: 160px;
     padding: 20px;
 
     display: flex;
@@ -31,13 +55,12 @@
 }
 
 .banner_placar{
-    
-    margin-top: 100px;
-    width: 70%;
-    background-color: #e1fdb2;
 
+    width: 70%;
+    background-color: #e1fdb2;   
+    border: 2px solid #6F8F4F;
 }
-.banner_placar h3,h2{
+.banner_placar h3, .banner_placar h2{
     text-align: center;
 }
 .banner_placar h1{
@@ -50,27 +73,38 @@
     display: inline-block;
 }
 
-.banner_sgnt{
+.banner{
     display: flex;
     flex-direction: column;
 
     margin-top: 100px;
     width: 70%;
     background-color: #e1fdb2;
+    border: 2px solid #6F8F4F;
 }
-.banner_sgnt p{
+.banner p{
     background-color: #C6E4A7   ;
 }
 .cont{
-    margin-top: 10px;
-    display: flex;
 
-    border-bottom: 1px solid black ;
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+.in{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 
 }
-.cont-inter{
-    margin-left: 30px;
-    margin-top: 10px;
+.caixa{
+    height: 50px;
+    width: 50px;
+    background-color: #000000;
+    border-radius: 8px;
 }
 /*barra lateral*/
 .ladobar{
@@ -78,7 +112,7 @@
     flex-direction: column;
     left: 0;
     top: 100px;
-    height: calc(100vh - 100px);
+    height: calc(100dvh - 100px);
     width: 150px;
     background-color: #DBEBC0;  
     border-right: 1px solid gray;    
@@ -97,7 +131,7 @@
 
 .ladobar li {
     padding-bottom: 10px;
-    transition: background-color 0.2s ease;
+    transition: all 0.2s ease;
     border-radius: 20px;
     
     line-height: 30px;
