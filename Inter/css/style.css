@@ -24,6 +24,16 @@ a{
     background-color: #DBEBC0;
     border-bottom: 1px solid gray;
 }
+.signin .navbar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 50px;
+
+    display: flex;
+    align-items: start;
+    justify-content: center;
+}
 .search_bar{
     height: 40px;
     width: 200px;
@@ -132,6 +142,14 @@ a{
     font-size: 20px;
     font-weight: bold;
     text-align: center;
+}
+.circle{
+    height: 300px;
+    width: 300px;
+    border-radius: 50px;
+
+    background-color: solid gray;
+
 }
 /*barra lateral*/
 .ladobar{
