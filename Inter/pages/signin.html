@@ -11,14 +11,38 @@
 <body class="signin">
     <div class="content">
         <div class="banner">
-            <div class="image-holder"></div><br>
+            <div class="image-holder"></div>
             <h2>Crie uma conta no site</h2>
-            <h4>Insira seu nome</h4>
+            <h4>Preencha as informações abaixo</h4>
 
             <form action="">
-
                 <div class="form-cont">
                     <label for="nome">Nome</label>
+                    <input type="text" id="nome" placeholder="Digite seu nome">
+
+                    <label for="rm">RM</label>
+                    <input type="text" id="rm" placeholder="Ex: 23500">
+
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" placeholder="******">
+                </div>
+
+                <div class="form-cont">
+                    <label for="data-nasc">Data de Nascimento</label>
+                    <input type="date" id="data-nasc">
+
+                    <label for="turma">Turma</label>
+                    <select name="turma" id="turma">
+                        <option value="" disabled selected>Selecione sua turma</option>
+                        <option value="1ds">1° DS</option>
+                        <option value="2ds">2° DS</option>
+                        <option value="3ds">3° DS</option>
+                        <option value="1adm">1° Adm</option>
+                        <option value="2adm">2° Adm</option>
+                        <option value="3adm">3° Adm</option>
+                    </select>
+                    
+                    <button type="submit">Cadastrar</button>
                 </div>
             </form>
         </div>
