@@ -3,18 +3,27 @@
 :root {
     --off-white: #FFFAF0;
     /* Fundo principal */
+
     --verde-claro: #DBEBC0;
     /* Navbar e Lateral */
+
     --verde-banner: #E1FDB2;
     /* Fundo dos Banners */
+    
     --verde-destaque: #C6E4A7;
     /* Hover e tags <p> */
+
     --verde-escuro: #6F8F4F;
     /* Bordas e Avatar */
+
     --cinza-borda: gray;
     /* Divisores fixos */
+
     --branco-transp: #fffaf0ca;
     /* Fundo do Signin */
+}
+a,p,h1,h2,h3,h4,span{
+    background-color: inherit;
 }
 
 * {
@@ -29,6 +38,7 @@ a {
     text-decoration: none;
     color: black;
     background-color: inherit;
+    cursor: pointer;
 }
 
 /* Barras Fixas */
@@ -68,6 +78,7 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: var(--off-white);
 }
 
 /* Banners e Grid */
@@ -77,7 +88,6 @@ a {
     max-width: 1000px;
     background-color: var(--verde-banner);
     border: 2px solid var(--verde-escuro);
-    border-radius: 10px;
 }
 
 .banner {
@@ -127,6 +137,7 @@ a {
 
 .banner p {
     border-radius: 8px 8px 0 0;
+    background-color: var(--verde-destaque);
 }
 
 .banner_placar p {
@@ -137,12 +148,16 @@ a {
     display: flex;
     justify-content: space-between;
     margin: 20px;
+    background-color: inherit;
 }
-
+.cont-inter{
+    background-color: inherit;
+}
 .in {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: inherit;
 }
 
 .caixa {
@@ -194,6 +209,7 @@ a {
     background-color: var(--verde-escuro);
     position: absolute;
     right: 20px;
+    transform: translateY(-50%);
 }
 
 /* Signin Config */
@@ -215,20 +231,21 @@ a {
 
 .signin .image-holder {
     position: relative;
-    right: auto;
+    right: 0;
     width: 80px;
     height: 80px;
     z-index: 1;
+    transform: translateY(0px);
 }
 
 .signin #mini {
     position: relative;
-    right: auto;
+    right: 0;
     z-index: 2;
     width: 75px;
     height: 75px;
     background-color: rgb(255, 255, 255);
-    margin-top: -92px;
+    margin-top: -93px;
 }
 
 .signin h2 {
