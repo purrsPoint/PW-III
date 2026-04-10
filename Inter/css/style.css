@@ -1,239 +1,392 @@
+@import url('https://fonts.googleapis.com/css2?family=Datatype:wght@100..900&display=swap');
 
+:root {
+    --off-white: #FFFAF0;
+    /* Fundo principal */
+    --verde-claro: #DBEBC0;
+    /* Navbar e Lateral */
+    --verde-banner: #E1FDB2;
+    /* Fundo dos Banners */
+    --verde-destaque: #C6E4A7;
+    /* Hover e tags <p> */
+    --verde-escuro: #6F8F4F;
+    /* Bordas e Avatar */
+    --cinza-borda: gray;
+    /* Divisores fixos */
+    --branco-transp: #fffaf0ca;
+    /* Fundo do Signin */
+}
 
-    @import url('https://fonts.googleapis.com/css2?family=Datatype:wght@100..900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Datatype", monospace;
+    background-color: var(--off-white);
+}
 
-    :root {
-        --off-white: #FFFAF0;       /* Fundo principal */
-        --verde-claro: #DBEBC0;     /* Navbar e Lateral */
-        --verde-banner: #E1FDB2;    /* Fundo dos Banners */
-        --verde-destaque: #C6E4A7;  /* Hover e tags <p> */
-        --verde-escuro: #6F8F4F;    /* Bordas e Avatar */
-        --cinza-borda: gray;        /* Divisores fixos */
-        --branco-transp: #fffaf0ca; /* Fundo do Signin */
-    }
+a {
+    text-decoration: none;
+    color: black;
+    background-color: inherit;
+}
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Datatype", monospace;
-        background-color: var(--off-white);
-    }
-    a {
-        text-decoration: none;
-        color: inherit;
-    }
+/* Barras Fixas */
+.navbar,
+.ladobar {
+    position: fixed;
+    left: 0;
+    background-color: var(--verde-claro);
+    border-color: var(--cinza-borda);
+    display: flex;
+    justify-content: center;
+}
 
-    /* Barras Fixas */
-    .navbar, .ladobar {
-        position: fixed;
-        left: 0;
-        background-color: var(--verde-claro);
-        border-color: var(--cinza-borda);
-        display: flex;
-        justify-content: center;
-    }
-    .navbar {
-        top: 0;
-        width: 100%;
-        height: 100px;
-        align-items: center;
-        border-bottom: 1px solid;
-        z-index: 10;
-    }
-    .ladobar {
-        top: 100px;
-        width: 150px;
-        height: calc(100vh - 100px);
-        border-right: 1px solid;
-        align-items: center;
-        text-align: center;
-    }
-    /* Conteúdo */
-    .content {
-        margin-top: 100px;
-        margin-left: 150px;
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    /* Banners e Grid */
-    .banner, .banner_placar {
-        width: 80%;
-        max-width: 1000px;
-        background-color: var(--verde-banner);
-        border: 2px solid var(--verde-escuro);
-        border-radius: 10px;
-    }
-    .banner { 
-        margin-top: 50px; 
-        display: flex; 
-        flex-direction: column; 
-    }
-    .banner-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
-        width: 90%;
-        margin-top: 50px;
-    }
-    .banner-grid .banner {
-        width: 100%;
-        height: 150px;
-        margin-top: 0;
-        justify-content: center;
-        align-items: center;
-        font-size: 20px;
-        font-weight: bold;
-    }
+.navbar {
+    top: 0;
+    width: 100%;
+    height: 100px;
+    align-items: center;
+    border-bottom: 1px solid;
+    z-index: 10;
+}
 
-    /* Elementos Internos */
-    .banner_placar h1 { font-size: 80px; text-align: center; }
-    .banner_placar h2, .banner_placar h3 { text-align: center; }
-    .banner p, .banner_placar p {
-        background-color: var(--verde-destaque);
-        display: inline-block;
-        padding: 5px 10px;
-    }
-    .banner p { border-radius: 8px 8px 0 0; }
-    .banner_placar p { border-top-left-radius: 10px; }
-    .cont {
-        display: flex;
-        justify-content: space-between;
-        margin: 20px;
-    }
-    .in {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .caixa {
-        height: 50px;
-        width: 50px;
-        background-color: #000;
-        border-radius: 8px;
-    }
+.ladobar {
+    top: 100px;
+    width: 150px;
+    height: calc(100vh - 100px);
+    border-right: 1px solid;
+    align-items: center;
+    text-align: center;
+}
 
-    /* Menu Lateral */
-    .ladobar ul {
-        list-style: none;
-        padding: 0;
-        height: 90%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        width: 100%;
-    }
-    .ladobar li {
-        padding: 10px 0;
-        transition: all 0.2s ease;
-        border-radius: 20px;
-        line-height: 30px;
-    }
-    .ladobar li:hover, .ativo {
-        background-color: var(--verde-destaque) !important;
-        cursor: pointer;
-    }
+/* Conteúdo */
+.content {
+    margin-top: 100px;
+    margin-left: 150px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-    /* Inputs e Avatar */
-    .search_bar {
-        height: 40px;
-        width: 200px;
-        border: none;
-        padding: 0 20px;
-        border-radius: 20px;
-    }
-    .image-holder {
-        height: 40px;
-        width: 40px;
-        border-radius: 50%;
-        background-color: var(--verde-escuro);
-        position: absolute;
-        right: 20px;
-    }
+/* Banners e Grid */
+.banner,
+.banner_placar {
+    width: 80%;
+    max-width: 1000px;
+    background-color: var(--verde-banner);
+    border: 2px solid var(--verde-escuro);
+    border-radius: 10px;
+}
 
-    /* Signin Config *//* Signin config */
-    .signin .content { 
-        margin-left: 0; 
-        margin-top: 50px; 
-    }
+.banner {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+}
 
-    .signin .banner { 
-        background-color: var(--branco-transp);
-        width: 90%;
-        max-width: 800px;
-        padding: 40px; 
-        display: flex; 
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-    }
+.banner-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 90%;
+    margin-top: 50px;
+}
 
-    .signin .image-holder { 
-        position: relative; 
-        right: auto;
-        width: 80px; 
-        height: 80px;
-        z-index: 1;
-    }
-    .signin #mini{
-        position: relative;
-        right: auto;
-        z-index: 2;
-        width: 75px;
-        height: 75px;
-        background-color: rgb(255, 255, 255);
-        margin-top: -92px;
-    }
+.banner-grid .banner {
+    width: 100%;
+    height: 150px;
+    margin-top: 0;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+}
 
-    .signin h2 { font-size: 28px; margin-bottom: 5px; }
-    .signin h4 { font-size: 18px; color: var(--verde-escuro); margin-bottom: 20px; }
-    .signin #link{ cursor: pointer; text-decoration: underline;}
-    .signin form { 
-        display: flex; 
-        flex-direction: row; 
-        justify-content: center;
-        gap: 40px;
-        width: 100%;
-        background: transparent;
-    }
+/* Elementos Internos */
+.banner_placar h1 {
+    font-size: 80px;    
+}
 
-    .signin .form-cont { 
-        display: flex; 
-        flex-direction: column; 
-        flex: 1;
-        text-align: left;
-        background: transparent;
-    }
+.banner_placar h2,
+.banner_placar h3,
+.banner_placar h1 {
+    text-align: center;
+    background-color: inherit;
+}
 
-    .signin label {
-        font-size: 16px;
-        margin-bottom: 5px;
-        font-weight: bold;
-        background: transparent;
-    }
+.banner_placar h1 .banner_placar h2 .banner_placar h3{
+    background-color: inherit;
+}
+.banner_placar p {
+    background-color: var(--verde-destaque);
+    display: inline-block;
+    padding: 5px 10px;
+}
 
-    .signin input, 
-    .signin select { 
-        width: 100%;
-        height: 45px;
-        padding: 10px;
-        border: 2px solid var(--verde-escuro);
-        border-radius: 8px;
-        font-size: 16px;
-        background-color: #FFF; 
-        margin-bottom: 20px;
-    }
-    .signin input[type="date"] {
-        font-family: inherit;
-    }
-    .signin button{
-        margin-top: 10px; 
-        height: 45px; 
-        background: var(--verde-escuro); 
-        color: white; border: none; 
-        border-radius: 8px; 
-        transform: translateY(40%);
-        cursor: pointer;
-    }
+.banner p {
+    border-radius: 8px 8px 0 0;
+}
+
+.banner_placar p {
+    border-top-left-radius: 10px;
+}
+
+.cont {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+.in {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.caixa {
+    height: 50px;
+    width: 50px;
+    background-color: #000;
+    border-radius: 8px;
+}
+
+/* Menu Lateral */
+.ladobar ul {
+    list-style: none;
+    padding: 0;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+    background-color: var(--verde-claro);
+}
+
+.ladobar li {
+    padding: 10px 0;
+    transition: all 0.2s ease;
+    border-radius: 20px;
+    line-height: 30px;
+    background-color: var(--verde-banner);
+}
+
+.ladobar li:hover,
+.ativo {
+    background-color: var(--verde-destaque) !important;
+    cursor: pointer;
+}
+
+/* Inputs e Avatar */
+.search_bar {
+    height: 40px;
+    width: 200px;
+    border: none;
+    padding: 0 20px;
+    border-radius: 20px;
+}
+
+.image-holder {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: var(--verde-escuro);
+    position: absolute;
+    right: 20px;
+}
+
+/* Signin Config */
+.signin .content {
+    margin-left: 0;
+    margin-top: 50px;
+}
+
+.signin .banner {
+    background-color: var(--branco-transp);
+    width: 90%;
+    max-width: 800px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.signin .image-holder {
+    position: relative;
+    right: auto;
+    width: 80px;
+    height: 80px;
+    z-index: 1;
+}
+
+.signin #mini {
+    position: relative;
+    right: auto;
+    z-index: 2;
+    width: 75px;
+    height: 75px;
+    background-color: rgb(255, 255, 255);
+    margin-top: -92px;
+}
+
+.signin h2 {
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+.signin h4 {
+    font-size: 18px;
+    color: var(--verde-escuro);
+    margin-bottom: 20px;
+}
+
+.signin #link {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.signin form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 40px;
+    width: 100%;
+    background: transparent;
+}
+
+.signin .form-cont {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    text-align: left;
+    background: transparent;
+}
+
+.signin label {
+    font-size: 16px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    background: transparent;
+}
+
+.signin input,
+.signin select {
+    width: 100%;
+    height: 45px;
+    padding: 10px;
+    border: 2px solid var(--verde-escuro);
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #FFF;
+    margin-bottom: 20px;
+}
+
+.signin input[type="date"] {
+    font-family: inherit;
+}
+
+.signin button {
+    margin-top: 10px;
+    height: 45px;
+    background: var(--verde-escuro);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    transform: translateY(40%);
+    cursor: pointer;
+}
+
+/*Login*/
+
+.login .content {
+    margin-left: 0;
+    margin-top: 50px;
+}
+
+.login .banner {
+    background-color: var(--branco-transp);
+    width: 90%;
+    max-width: 800px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.login .image-holder {
+    position: relative;
+    right: auto;
+    width: 80px;
+    height: 80px;
+
+}
+
+.login h2 {
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+.login h4 {
+    font-size: 18px;
+    color: var(--verde-escuro);
+    margin-bottom: 20px;
+}
+
+.login #link {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.login form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 40px;
+    width: 100%;
+    background: transparent;
+}
+
+.login .form-cont {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    text-align: left;
+    background: transparent;
+}
+
+.login label {
+    font-size: 16px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    background: transparent;
+}
+
+.login input,
+.login select {
+    width: 50%;
+    height: 45px;
+    padding: 10px;
+    border: 2px solid var(--verde-escuro);
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #FFF;
+    margin-bottom: 20px;
+}
+
+.login input[type="date"] {
+    font-family: inherit;
+}
+
+.login button {
+    margin-top: 10px;
+    height: 45px;
+    background: var(--verde-escuro);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    transform: translateY(40%);
+    cursor: pointer;
+}
