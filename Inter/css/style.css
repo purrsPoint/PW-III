@@ -324,13 +324,13 @@ a {
 
 .login .banner {
     background-color: var(--branco-transp);
-    width: 90%;
-    max-width: 800px;
-    padding: 40px;
+    width: 100%;
+    max-width: 650px; 
+    padding: 30px;   
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
 }
 
 .login .image-holder {
@@ -338,7 +338,8 @@ a {
     right: auto;
     width: 80px;
     height: 80px;
-
+    margin-top: 10px;
+    transform: translateY(0%);
 }
 
 .login h2 {
@@ -359,7 +360,7 @@ a {
 
 .login form {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     gap: 40px;
     width: 100%;
@@ -383,7 +384,6 @@ a {
 
 .login input,
 .login select {
-    width: 50%;
     height: 45px;
     padding: 10px;
     border: 2px solid var(--verde-escuro);
@@ -398,7 +398,7 @@ a {
 }
 
 .login button {
-    margin-top: 10px;
+    margin: 10px;
     height: 45px;
     background: var(--verde-escuro);
     color: white;
