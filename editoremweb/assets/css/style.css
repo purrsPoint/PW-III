@@ -1,0 +1,73 @@
+/* assets/css/style.css */
+body {
+    background-color: #0f0f0f;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+
+.editor-container {
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    padding: 25px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 800px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border: 1px solid #333;
+}
+
+.fixed-code {
+    color: #569cd6; /* Azul de palavras-chave */
+    margin: 0;
+    display: block;
+    line-height: 1.5;
+}
+
+.indent {
+    margin-left: 20px;
+}
+
+textarea {
+    width: 100%;
+    background: transparent;
+    color: #ce9178; /* Cor de strings */
+    border: none;
+    outline: none;
+    resize: vertical;
+    font-family: 'Consolas', monospace;
+    font-size: 16px;
+    padding-left: 40px;
+    margin: 10px 0;
+    caret-color: white; /* Cor do cursor */
+}
+
+button {
+    background-color: #007acc;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    background-color: #005a9e;
+}
+
+.console {
+    background: #000;
+    color: #85f485; /* Verde terminal */
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 4px;
+    width: 90%;
+    max-width: 800px;
+    white-space: pre-wrap;
+    border-left: 4px solid #007acc;
+}
