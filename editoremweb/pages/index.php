@@ -1,6 +1,6 @@
 <?php
 require_once '../config/config.php';
-require_once __DIR__ . '/../config/executecode.php';
+require_once __DIR__ . '/../config/exec64.php';
 
 $message = "";
 $output = "";
@@ -8,7 +8,7 @@ $aluno_code = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['java_code'])) {
 
-    $aluno_code = $_POST['java_code'] ?? "";
+    $aluno_code = $_POST['java_code'];
 
     //envia pra api
     $output = execode($aluno_code);

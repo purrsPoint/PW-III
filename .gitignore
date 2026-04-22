@@ -1,5 +1,1 @@
 #ignora os arquivos criados pelo editor quando comitar
-temp/*.java
-temp/*.class
-
-!temp/.gitkeep

@@ -1,5 +1,6 @@
 <?php
 
+
 function execode($aluno_code)
 {
 
