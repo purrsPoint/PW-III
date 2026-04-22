@@ -9,16 +9,12 @@
 function execode($aluno_code) {
     // Boilerplate with Imports//boilerplate são partes do cdg q vao ser imprimidas e n podem ser mudadas
     
-    $full_code = "import java.util.*;\nimport java.io.*;\npublic class Main {\n";
-    $full_code .= "public static void main(String[] args){\n";
-    $full_code .= $aluno_code . "\n";
-    $full_code .= "}\n}";
 
     $url = "https://ce.judge0.com/submissions?base64_encoded=true&wait=false";
 
     $dados = [
         "language_id" => 62, // Java (OpenJDK 13.0.1)
-        "source_code" => base64_encode($full_code)
+        "source_code" => base64_encode($aluno_code)
     ];
     
     $options = [

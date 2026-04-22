@@ -16,12 +16,13 @@ body {
     border-radius: 8px;
     width: 90%;
     max-width: 800px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     border: 1px solid #333;
 }
 
 .fixed-code {
-    color: #569cd6; /* Azul de palavras-chave */
+    color: #569cd6;
+    /* Azul de palavras-chave */
     margin: 0;
     display: block;
     line-height: 1.5;
@@ -32,17 +33,18 @@ body {
 }
 
 textarea {
+    margin-top: 20px;
     width: 100%;
-    background: transparent;
-    color: #ce9178; /* Cor de strings */
-    border: none;
-    outline: none;
-    resize: vertical;
-    font-family: 'Consolas', monospace;
-    font-size: 16px;
-    padding-left: 40px;
-    margin: 10px 0;
-    caret-color: white; /* Cor do cursor */
+    /* Monospace ensures 'i' and 'w' take the same space, keeping alignment perfect */
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    padding: 10px;
+    line-height: 1.5;
+    border: 1px solid #ccc;
+    /* This removes the weird "empty space" browsers sometimes add */
+    display: block;
+    tab-size: 4;
+    /* Standard programming tab width */
 }
 
 button {
@@ -62,7 +64,8 @@ button:hover {
 
 .console {
     background: #000;
-    color: #85f485; /* Verde terminal */
+    color: #85f485;
+    /* Verde terminal */
     padding: 15px;
     margin-top: 20px;
     border-radius: 4px;
