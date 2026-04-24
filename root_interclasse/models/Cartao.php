@@ -3,7 +3,7 @@
     require_once __DIR__ . '/Database.php';
     
     class Cartao{
-        public static funtion allByPartida(int $partidaId): array{
+        public static function allByPartida(int $partidaId): array{
             
             $pdo = Database::connection();
 

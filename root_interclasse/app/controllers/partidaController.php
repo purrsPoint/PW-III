@@ -1,14 +1,13 @@
 <?php
+    require_once __DIR__ . '/../../models/Partida.php';
+    require_once __DIR__ . '/../../models/Cartao.php';
+    require_once __DIR__ . '/../../models/Database.php';
 
-    require_once __DIR__ . '/../models/Partida.php'
-    require_once __DIR__ . '/../models/Cartao.php' 
-    require_once __DIR__ . '/../models/Database.php'
-
-    class PartidaController {
+ class PartidaController {
         public function index(): void{
             $partidas = Partida::all();
 
-            require __DIR__ . '/../views/partidas/index.php';
+            require __DIR__ . '/../../views/partidas/index.php';
         }
 
         public function show(): void{
@@ -26,7 +25,7 @@
 
             $cartoes = Cartao::allByPartida($id);
 
-            require __DIR__ . '/../views/partidas/show.php';
+            require __DIR__ . '/../../views/partidas/show.php';
         }
 
         public function createForm(): void{
@@ -36,15 +35,15 @@
 
             $modalidades = $pdo->query("SELECT id, nome FROM modalidades ORDER BY nome")->fetchAll();
 
-            require __DIR__ . '/../views/partidas/create.php';
+            require __DIR__ . '/../../views/partidas/create.php';
         }
 
         public function store(): void{
 
             $modalidadeId = (int)($_POST['modalidade_id'] ?? 0);
-            $dataHora = trim($_POST['data_hora'] ??);
-            $casa = trim($_POST['time_casa'] ??);
-            $fora = trim($_POST['time_fora'] ??);
+            $dataHora = trim($_POST['data_hora'] ?? '');
+            $casa = trim($_POST['time_casa'] ?? '');
+            $fora = trim($_POST['time_fora'] ?? '');
 
              if ($modalidadeId <= 0 || $dataHora === '' || $casa === '' || $fora === '') {  
                 http_response_code(422);  

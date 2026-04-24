@@ -22,13 +22,13 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach($partidas as $p) ?>
+            <?php foreach($partidas as $p): ?>
             <tr>
                 <td><?= htmlspecialchars($p['data_hora'])?></td>
                 <td><?= htmlspecialchars($p['modalidade'])?></td>
 
                 <td><?= htmlspecialchars($p['time_casa'])?> x <?= htmlspecialchars($p['time_fora'])?></td>
-                <td><?= (int)$p['placar_casa']?> : <?= (int)$p['placar_fora']</td>
+                <td><?= (int)$p['placar_casa']?> : <?= (int)$p['placar_fora']?></td>
                 <td>
                     <a href="/partidas/show?id=<?= urlencode((string)$p['id']) ?>">Detalhes</a>
                 

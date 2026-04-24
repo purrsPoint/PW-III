@@ -10,7 +10,7 @@ class Partida{
         //selecão das paradas em sql
         $sql = "SELECT p.*,
                 m.nome AS modalidade from partidas p
-                JOIN modalidades m ON m.id = p.modalide_id 
+                JOIN modalidades m ON m.id = p.modalidade_id 
                 ORDER BY p.data_hora DESC";
                 return $pdo->query($sql)->fetchAll();
     }
