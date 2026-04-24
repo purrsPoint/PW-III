@@ -48,5 +48,21 @@ class Partida{
     ]);
     return(int)$pdo->lastInsertId();
     }
+
+    public static function atualizarPlacar(int $partidaId, int $casa, int $fora): void {
+        if($casa < 0 || $fora < 0){
+            throw new InvalidArgumentException("Placar não pode ser negativo.");
+        }
+
+        $pdo = Database::connection();
+
+        $stmt = $pdo->prepare(
+            "UPDATE partidas
+            SET placar_casa = :casa,placar_fora = :fora
+            WHERE id = :id"
+        );
+
+        $stmt->execute(['casa' => $casa, 'fora' => $fora, 'id' => $partidaId]);
+    }
 }
 ?>
