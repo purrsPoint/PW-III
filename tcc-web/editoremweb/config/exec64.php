@@ -24,6 +24,7 @@ function execode($aluno_code) {
             "content"=> json_encode($dados)
         ]
     ];
+    
     $cntxx = stream_context_create($options);
     $resl = @file_get_contents($url, false, $cntxx);
 

@@ -22,9 +22,9 @@ if(empty(trim($codigo))) {
     exit;
 }
 
-$judge0 = new judge0();
+$judge0 = new Judge0();
 
-$resultado = $judge0->enviarcode(
+$resultado = $judge0->submitCodigo(
     $codigo,
     $entrada
 );

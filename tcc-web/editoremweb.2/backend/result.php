@@ -9,7 +9,7 @@ $token = $_GET["token"] ?? "";
 
 if(empty(trim($token))){
 
-    echo json_decode([
+    echo json_encode([
         "success" => false,
         "erro" => "Token invalido"
     ]);
@@ -17,15 +17,15 @@ if(empty(trim($token))){
     exit;
 }
 
-$judge0 = new judge0();
+$judge0 = new Judge0();
 
 $resultadoExecucao = $judge0->getSubmission($token);
 
-if(isset($result["erro"])){
+if(isset($resultadoExecucao["erro"])){
 
     echo json_encode([
         "success" => false,
-        "erro" => $result["erro"]
+        "erro" => $resultadoExecucao["erro"]
     ]);
 
     exit;
@@ -36,7 +36,7 @@ $statusId = $resultadoExecucao["status"]["id"] ?? 0;
 $resposta = [
 
     "success" => true,
-    "finalizado" => $statusId > 2;
+    "finalizado" => $statusId > 2,
     "status" => $resultadoExecucao["status"] ?? null
 ];
 
@@ -57,7 +57,8 @@ if($statusId > 2){
         decodificar(
             $resultadoExecucao["compile_output"] ?? ""
         )
-    );
-
-    echo json_encode($resposta);
+    ); 
 }
+  echo json_encode($resposta);
+
+?>

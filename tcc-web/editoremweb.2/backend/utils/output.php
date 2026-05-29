@@ -13,7 +13,7 @@ function decodificar(?string $texto): string {
     return $textoDecodificado !== false ? $textoDecodificado : $texto;
 }
 
-functionn normalizarOutput(string $texto){
+function normalizarOutput(string $texto) : string{
     $texto = str_replace(
         "\r\n",
         "\n",
