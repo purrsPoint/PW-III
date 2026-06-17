@@ -6,61 +6,14 @@
     <meta charset="UTF-8">
 
     <title>Java School | Editor</title>
-
-    <style>
-
-        body{
-            background: #111;
-            color: white;
-            font-family: Arial;
-            padding: 20px;
-        }
-
-        .editor-container{
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        textarea{
-            width: 100%;
-            height: 400px;
-            background: #1e1e1e;
-            color: white;
-            border: 1px solid #444;
-            padding: 15px;
-            font-family: monospace;
-            resize: vertical;
-        }
-
-        button{
-            width: 200px;
-            padding: 10px;
-            cursor: pointer;
-        }
-
-        .console{
-            background: black;
-            padding: 15px;
-            min-height: 120px;
-            white-space: pre-wrap;
-            border: 1px solid #444;
-        }
-
-        .status{
-            color: #aaa;
-        }
-
-    </style>
-
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-<div class="editor-container">
+    <div class="editor-container">
 
-    <textarea id="editor">
-import java.util.*;
+        <textarea id="editor">import java.util.*;
 
 public class Main {
 
@@ -69,192 +22,216 @@ public class Main {
         System.out.println("Hello World");
 
     }
-}
-    </textarea>
+}</textarea>
 
-    <textarea
-        id="stdin"
-        placeholder="Entrada (stdin)"
-        style="height:120px;"
-    ></textarea>
+        <textarea id="stdin" placeholder="Entrada (stdin)" style="height:120px;"></textarea>
 
-    <button id="runButton">
-        Rodar Código
-    </button>
+        <button id="runButton">
+            Rodar Código
+        </button>
 
-    <div class="status" id="status">
-        Aguardando execução...
+        <div id="loading" class="loading-container">
+
+            <div class="spinner"></div>
+
+        </div>
+
+        <div class="console" id="output"></div>
+
     </div>
 
-    <div class="console" id="output"></div>
+    <script>
 
-</div>
+        const editor =
+            document.getElementById("editor");
 
-<script>
+        const stdin =
+            document.getElementById("stdin");
 
-const editor = document.getElementById("editor");
+        const runButton =
+            document.getElementById("runButton");
 
-const stdin = document.getElementById("stdin");
+        const output =
+            document.getElementById("output");
 
-const runButton = document.getElementById("runButton");
+        const loading =
+            document.getElementById("loading");
 
-const output = document.getElementById("output");
+        /* suporte para TAB */
 
-const statusElement = document.getElementById("status");
+        editor.addEventListener(
+            "keydown",
+            function (e) {
 
-/*
-|--------------------------------------------------------------------------
-| TAB SUPPORT
-|--------------------------------------------------------------------------
-*/
+                if (e.key === "Tab") {
 
-editor.addEventListener("keydown", function(e){
+                    e.preventDefault();
 
-    if(e.key === "Tab"){
+                    const inicio =
+                        this.selectionStart;
 
-        e.preventDefault();
+                    const fim =
+                        this.selectionEnd;
 
-        const start = this.selectionStart;
-
-        const end = this.selectionEnd;
-
-        this.setRangeText(
-            "    ",
-            start,
-            end,
-            "end"
-        );
-    }
-});
-
-/*
-|--------------------------------------------------------------------------
-| EXECUTION
-|--------------------------------------------------------------------------
-*/
-
-runButton.addEventListener("click", async () => {
-
-    output.textContent = "";
-
-    statusElement.textContent = "Enviando código...";
-
-    /*
-    |--------------------------------------------------------------------------
-    | SUBMIT CODE
-    |--------------------------------------------------------------------------
-    */
-
-    const response = await fetch(
-        "../backend/submit.php",
-        {
-
-            method: "POST",
-
-            headers: {
-                "Content-Type": "application/json"
-            },
-
-            body: JSON.stringify({
-
-                codigo: editor.value,
-
-                entrada: stdin.value
-            })
-        }
-    );
-
-    const submitData = await response.json();
-
-    /*
-    |--------------------------------------------------------------------------
-    | ERROR
-    |--------------------------------------------------------------------------
-    */
-
-    if(!submitData.success){
-
-        output.textContent = submitData.erro;
-
-        statusElement.textContent = "Erro";
-
-        return;
-    }
-
-    /*
-    |--------------------------------------------------------------------------
-    | TOKEN
-    |--------------------------------------------------------------------------
-    */
-
-    const token = submitData.token;
-
-    statusElement.textContent = "Código enviado";
-
-    /*
-    |--------------------------------------------------------------------------
-    | START POLLING
-    |--------------------------------------------------------------------------
-    */
-
-    const interval = setInterval(async () => {
-
-        statusElement.textContent =
-            "Executando código...";
-
-        const resultResponse = await fetch(
-
-            `../backend/result.php?token=${token}`
-
+                    this.setRangeText(
+                        "    ",
+                        inicio,
+                        fim,
+                        "end"
+                    );
+                }
+            }
         );
 
-        const resultData =
-            await resultResponse.json();
+        /* execução */
 
-        /*
-        |--------------------------------------------------------------------------
-        | FINISHED?
-        |--------------------------------------------------------------------------
-        */
+        runButton.addEventListener(
+            "click",
+            async () => {
 
-        if(resultData.finalizado){
+                output.textContent = "";
 
-            clearInterval(interval);
+                loading.style.display = "flex";
 
-            statusElement.textContent =
-                "Execução finalizada";
+                runButton.disabled = true;
 
-            /*
-            |--------------------------------------------------------------------------
-            | PRIORITY OUTPUT
-            |--------------------------------------------------------------------------
-            */
+                try {
 
-            if(resultData.compile_output){
+                    /* envia código */
 
-                output.textContent =
-                    resultData.compile_output;
+                    const response =
+                        await fetch(
+                            "../backend/submit.php",
+                            {
 
-                return;
+                                method: "POST",
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/json"
+                                },
+
+                                body: JSON.stringify({
+
+                                    codigo:
+                                        editor.value,
+
+                                    entrada:
+                                        stdin.value
+                                })
+                            }
+                        );
+
+                    const submitData =
+                        await response.json();
+
+                    if (!submitData.success) {
+
+                        throw new Error(
+                            submitData.erro
+                        );
+                    }
+
+                    const token =
+                        submitData.token;
+
+                    /* inicia polling */
+
+                    const interval =
+                        setInterval(
+                            async () => {
+
+                                try {
+
+                                    const resultResponse =
+                                        await fetch(
+                                            `../backend/result.php?token=${token}`
+                                        );
+
+                                    const resultData =
+                                        await resultResponse.json();
+
+                                    /* finalizou */
+
+                                    if (resultData.finalizado) {
+
+                                        clearInterval(
+                                            interval
+                                        );
+
+                                        loading.style.display =
+                                            "none";
+
+                                        runButton.disabled =
+                                            false;
+
+                                        if (
+                                            resultData.compile_output
+                                        ) {
+
+                                            output.textContent =
+                                                resultData.compile_output;
+
+                                            return;
+                                        }
+
+                                        if (
+                                            resultData.stderr
+                                        ) {
+
+                                            output.textContent =
+                                                resultData.stderr;
+
+                                            return;
+                                        }
+
+                                        output.textContent =
+                                            resultData.stdout ||
+                                            "Sem saída";
+                                    }
+
+                                } catch (error) {
+
+                                    clearInterval(
+                                        interval
+                                    );
+
+                                    loading.style.display =
+                                        "none";
+
+                                    runButton.disabled =
+                                        false;
+
+                                    output.textContent =
+                                        "Erro ao consultar execução.";
+
+                                    console.error(
+                                        error
+                                    );
+                                }
+
+                            },
+                            1500
+                        );
+
+                } catch (error) {
+
+                    loading.style.display =
+                        "none";
+
+                    runButton.disabled =
+                        false;
+
+                    output.textContent =
+                        error.message;
+
+                    console.error(error);
+                }
+
             }
+        );
 
-            if(resultData.stderr){
-
-                output.textContent =
-                    resultData.stderr;
-
-                return;
-            }
-
-            output.textContent =
-                resultData.stdout || "Sem saída";
-        }
-
-    }, 1500);
-
-});
-
-</script>
+    </script>
 
 </body>
 
