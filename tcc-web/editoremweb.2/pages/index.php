@@ -1,3 +1,23 @@
+<?php
+
+    require_once "../backend/database.php";
+
+    $tarefa = $_GET["p"] ?? 1;
+
+    $stmt = $pdo->prepare(
+    "SELECT * FROM exercicios WHERE id = ?"
+    );
+
+    $stmt->execute([$tarefa]);
+    //pdo::fetch_assoc faz com que o resultado seja
+    // retornado como um array acessado pelo nome das colunas
+    $exercicio = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$exercicio) {
+        die("exercicio não encontrado");
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -12,17 +32,15 @@
 <body>
 
     <div class="editor-container">
-
-        <textarea id="editor">import java.util.*;
-
-public class Main {
-
-    public static void main(String[] args) {
-
-        System.out.println("Hello World");
-
-    }
-}</textarea>
+        <h1>
+            <?= $exercicio["titulo"] ?>
+        </h1>
+    <div>
+        <?= nl2br(htmlspecialchars($exercicio["descricao"]))?>
+    </div>
+        <textarea id="editor">
+            <?= $exercicio["codigo_inicial"] ?>
+        </textarea>
 
         <textarea id="stdin" placeholder="Entrada (stdin)" style="height:120px;"></textarea>
 
@@ -230,6 +248,22 @@ public class Main {
 
             }
         );
+
+        //temporario
+         fetch("../backend/verificar_resultado.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                exercicio_id: <?= $exercicio["id"] ?>,
+                codigo: editor.value
+            })
+        })
+        .then(resposta => resposta.json())
+        .then(dados => {
+            console.log(dados);
+        });
 
     </script>
 

@@ -7,6 +7,7 @@ class Judge0 {
     public function __construct()
     {
         $this->urlBase = "https://ce.judge0.com";
+
     }
 
     public function submitCodigo(
