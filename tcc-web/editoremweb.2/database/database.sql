@@ -29,7 +29,8 @@ VALUES
 (
     'Exercício 1 — Hello World',
     'Escreva um programa Java que mostre Hello World.',
-    'public class Main {
+    '
+    public class Main {
     public static void main(String[] args) {
 
     }
@@ -39,7 +40,8 @@ VALUES
 (
     'Exercício 2 — Soma',
     'Leia dois números e mostre a soma deles.',
-    'import java.util.Scanner;
+    '
+    import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -52,7 +54,8 @@ public class Main {
 (
     'Exercício 3 — Maior número',
     'Leia dois números e mostre qual é o maior.',
-    'import java.util.Scanner;
+    '
+    import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {

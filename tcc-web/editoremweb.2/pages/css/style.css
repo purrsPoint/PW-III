@@ -1,25 +1,8 @@
 body {
-    background: #111;
-    color: white;
-    font-family: Arial;
+    background-color: #121212;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
     padding: 20px;
-}
-
-.editor-container {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-textarea {
-    width: 100%;
-    height: 400px;
-    background: #1e1e1e;
-    color: white;
-    border: 1px solid #444;
-    padding: 15px;
-    font-family: monospace;
-    resize: vertical;
 }
 
 button {
@@ -29,43 +12,41 @@ button {
 }
 
 .console {
-    background: black;
+    background: #000000;
+    color: #00ff00;
     padding: 15px;
     min-height: 120px;
     white-space: pre-wrap;
     border: 1px solid #444;
+    border-radius: 4px;
 }
+
 
 .status {
     color: #aaa;
 }
 
-.loading-container{
+.loading-container {
     display: none;
     justify-content: center;
     align-items: center;
     padding: 20px;
 }
 
-.spinner{
+.spinner {
     width: 40px;
     height: 40px;
-
     border: 4px solid #444;
     border-top: 4px solid white;
-
     border-radius: 50%;
-
     animation: girar 1s linear infinite;
 }
 
-@keyframes girar{
-
-    from{
+@keyframes girar {
+    from {
         transform: rotate(0deg);
     }
-
-    to{
+    to {
         transform: rotate(360deg);
     }
 }
