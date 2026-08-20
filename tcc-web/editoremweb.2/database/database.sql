@@ -43,6 +43,7 @@ VALUES
 
 public class Main {
     public static void main(String[] args) {
+    Scanner leitor = new Scanner(System.in);
 
     }
 }',
@@ -55,6 +56,7 @@ public class Main {
 
 public class Main {
     public static void main(String[] args) {
+    Scanner leitor = new Scanner(System.in);
 
     }
 }',
@@ -67,5 +69,20 @@ VALUES
 (
     1,
     '',
-    'Hello World'
+    'HELLO WORLD'
+),
+(
+    2,
+    '2 3',
+    '5'
+),
+(
+    2,
+    '10 5',
+    '15'
+),
+(
+    2,
+    '-2 3',
+    '1'
 );

@@ -2,6 +2,8 @@
 
 require_once __DIR__ . "/database.php";
 require_once __DIR__ . "/services/judge0.php";
+require_once __DIR__ . "/utils/output.php";
+
 
 $dados = json_decode(
     file_get_contents("php://input"),
@@ -24,7 +26,8 @@ $testes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 $judge0 = new Judge0();
-
+$resultados = [];
+$todasCorretas = true;
 
 foreach ($testes as $teste) {
 
@@ -33,7 +36,36 @@ foreach ($testes as $teste) {
         $teste["entrada"]
     );
 
-    echo json_encode($envio);
+    $token = $envio["token"];
 
-    exit;
+    do {
+
+        sleep(1);
+
+        $resultado = $judge0->getSubmission($token);
+
+        $statusId = $resultado["status"]["id"];
+
+    } while ($statusId <= 2);
+
+    $saida = normalizarOutput(decodificar($resultado["stdout"]));
+    $saida_esperada = normalizarOutput($teste["saida_esperada"]);
+
+    $checkcorreto = strtoupper($saida) === strtoupper($saida_esperada);
+
+    if(!$checkcorreto){
+        $todasCorretas = false;
+    }
+
+    $resultados[] = [
+        "checkcorreto" => $checkcorreto,
+        "saida" => $saida,
+        "saida_esperada" => $saida_esperada,
+        "status" => $resultado["status"],
+    ];
 }
+echo json_encode([
+    "todasCorretas" => $todasCorretas,
+    "resultados" => $resultados,
+]);
+
