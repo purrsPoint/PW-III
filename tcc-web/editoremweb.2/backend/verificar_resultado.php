@@ -48,6 +48,25 @@ foreach ($testes as $teste) {
 
     } while ($statusId <= 2);
 
+    $errocompilacao = decodificar($resultado["compile_output"]?? "");
+    $stderr = decodificar($resultado["stderr"]?? "");
+
+    if($statusId === 6 || !empty($errocompilacao)){
+        echo json_encode([ 
+            "erro_compilacao" => true,
+            "mensagem" => $errocompilacao ?: "Erro de compilação",
+        ]);
+        exit;
+    }
+
+    if(!empty($stderr)){
+        echo json_encode([
+            "erro_execucao" => true,
+            "mensagem" => $stderr,
+        ]);
+        exit;
+    }
+
     $saida = normalizarOutput(decodificar($resultado["stdout"]));
     $saida_esperada = normalizarOutput($teste["saida_esperada"]);
 

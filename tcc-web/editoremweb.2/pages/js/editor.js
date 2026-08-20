@@ -65,6 +65,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 const dados = await verificarExercicios(exercicioId, codigo);
                 setUIBusy(false);
 
+                if (dados.erro_compilacao) {
+                    setOutput(dados.mensagem);
+                    return;
+                }
                 if (dados.todasCorretas) {
                     setOutput("Tarefa Concluída");
                 } else {
