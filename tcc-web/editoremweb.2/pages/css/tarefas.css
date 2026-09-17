@@ -9,31 +9,28 @@ h1 {
     margin-bottom: 30px;
 }
 
-.tarefa{
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    max-width: 600px;
-}
-
-.tarefa {
+.task{
     display: block;
     background: #1e1e1e;
     border: 1px solid #444;
     padding: 20px;
     color: white;
     text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 600px;
 }
 
 .tarefa:hover {
     background: #292929;
 }
 
-.tarefa-titulo {
-    font-size: 20px;
+.task-title {
+    font-size: 15px;
     margin-bottom: 8px;
 }
 
-.tarefa-descricao {
+.task-description {
     color: #aaa;
 }

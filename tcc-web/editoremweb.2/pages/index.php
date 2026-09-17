@@ -1,10 +1,10 @@
 <?php
     require_once "../backend/database.php";
 
-    $tarefa = $_GET["p"] ?? 1;
+    $exercicioId = $_GET["p"] ?? 1;
 
     $stmt = $pdo->prepare("SELECT * FROM exercicios WHERE id = ?");
-    $stmt->execute([$tarefa]);
+    $stmt->execute([$exercicioId]);
     $exercicio = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if (!$exercicio) {
@@ -32,7 +32,7 @@
         <!-- Div para o Monaco Editor -->
         <div id="editor-container" style="background-color: #1e1e1e;height: 350px; padding-top: 20px; border: 1px solid #ccc; margin-bottom: 15px;"></div>
         
-        <!-- Guardar código inicial -->
+        <!-- Guarda p código inicial -->
         <textarea id="codigo-inicial" style="display:none;"><?= htmlspecialchars($exercicio["codigo_inicial"]) ?></textarea>
 
         <textarea id="stdin" placeholder="Entrada (stdin)" style="height:120px;"></textarea>

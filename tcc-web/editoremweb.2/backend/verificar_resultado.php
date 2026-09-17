@@ -70,7 +70,7 @@ foreach ($testes as $teste) {
     $saida = normalizarOutput(decodificar($resultado["stdout"]));
     $saida_esperada = normalizarOutput($teste["saida_esperada"]);
 
-    $checkcorreto = strtoupper($saida) === strtoupper($saida_esperada);
+    $checkcorreto = $saida === $saida_esperada;
 
     if(!$checkcorreto){
         $todasCorretas = false;

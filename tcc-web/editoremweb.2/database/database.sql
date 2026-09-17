@@ -21,6 +21,27 @@ CREATE TABLE testes (
 	tambem é deleta o teste desse exercicio*/
 	FOREIGN KEY(exercicio_id)REFERENCES exercicios(id) ON DELETE cascade
 );
+
+CREATE TABLE aulas(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	titulo VARCHAR(255) NOT NULL,
+	video_url VARCHAR(255) NOT NULL,
+	conteudo TEXT NOT NULL,
+	exercicio_id INT NOT NULL,
+	posicao INT NOT NULL,
+	FOREIGN KEY (exercicio_id) REFERENCES exercicios(id)
+	ON DELETE cascade
+);
+
+CREATE TABLE usuarios(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	nome VARCHAR(100) NOT NULL,
+	email VARCHAR(255) NOT NULL,
+	senha VARCHAR(255) NOT NULL,
+	aula_atual INT NOT NULL DEFAULT 1
+);
+
+
 INSERT INTO exercicios
 
 (titulo, descricao, codigo_inicial, posicao)
@@ -72,7 +93,7 @@ VALUES
 (
     1,
     '',
-    'HELLO WORLD'
+    'Hello World'
 ),
 (
     2,
@@ -88,4 +109,28 @@ VALUES
     2,
     '-2 3',
     '1'
+);
+INSERT INTO aulas
+(titulo, video_url, conteudo, exercicio_id, posicao)
+VALUES
+(
+    'Olá Mundo',
+    'YOUTUBE_LINK_AQUI',
+    'Aqui você aprenderá como criar seu primeiro programa Java...',
+    1,
+    1
+),
+(
+    'Soma',
+    'YOUTUBE_LINK_AQUI',
+    'Nesta aula você aprenderá como receber valores...',
+    2,
+    2
+),
+(
+    'Maior número',
+    'YOUTUBE_LINK_AQUI',
+    'Nesta aula você aprenderá como comparar valores...',
+    3,
+    3
 );
