@@ -7,9 +7,8 @@ USE bce_school;
 CREATE TABLE exercicios(
 	id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
 	titulo VARCHAR(255) NOT NULL,
-		descricao TEXT NOT NULL,
-		codigo_inicial TEXT NOT NULL,
-		posicao INT NOT null
+	descricao TEXT NOT NULL,
+	codigo_inicial TEXT NOT NULL
 );
 
 CREATE TABLE testes (
@@ -36,15 +35,15 @@ CREATE TABLE aulas(
 CREATE TABLE usuarios(
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	nome VARCHAR(100) NOT NULL,
-	email VARCHAR(255) NOT NULL,
+	email VARCHAR(255) NOT NULL UNIQUE,
 	senha VARCHAR(255) NOT NULL,
-	aula_atual INT NOT NULL DEFAULT 1
+	aula_atual INT NOT NULL DEFAULT 1 
 );
 
 
 INSERT INTO exercicios
 
-(titulo, descricao, codigo_inicial, posicao)
+(titulo, descricao, codigo_inicial)
 
 VALUES
 (
@@ -55,8 +54,7 @@ VALUES
     public static void main(String[] args) {
 
     }
-}',
-    1
+}'
 ),
 (
     'Exercício 2 — Soma',
@@ -69,8 +67,7 @@ public class Main {
     Scanner leitor = new Scanner(System.in);
 
     }
-}',
-    2
+}'
 ),
 (
     'Exercício 3 — Maior número',
@@ -83,8 +80,7 @@ public class Main {
     Scanner leitor = new Scanner(System.in);
 
     }
-}',
-    3
+}'
 );
 
 INSERT INTO testes

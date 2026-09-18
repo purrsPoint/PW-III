@@ -1,5 +1,13 @@
 <?php
+require_once __DIR__ . "/sessao.php";
 
+if (!userlogado()) {
+    echo json_encode([
+        "success" => false,
+        "erro" => "Usuário não logado"
+    ]);
+    exit;
+}
 header("Content-Type: application/json");
 
 require_once __DIR__ ."/services/judge0.php";
@@ -60,5 +68,3 @@ if($statusId > 2){
     ); 
 }
   echo json_encode($resposta);
-
-?>

@@ -12,7 +12,7 @@ function precisalogar(): void{
     }
 }
 
-function pegarusuarioid(): int{
+function pegarusuarioid(): ?int{
     return $_SESSION['usuario_id'] ?? null;
 }
 

@@ -1,8 +1,50 @@
 <?php
     require_once "../backend/database.php";
+    require_once "../backend/sessao.php";
 
-    $exercicioId = $_GET["p"] ?? 1;
+    precisalogar();
+    
+    $exercicioId = $_GET["p"] ?? null;
 
+    if (!$exercicioId) {
+        die("Exercício não encontrado");
+    }
+    $usuario_id = pegarusuarioid();
+    
+    $stmt = $pdo->prepare(
+        "SELECT aula_atual
+         FROM usuarios
+         WHERE id = ?"
+    );
+    
+    $stmt->execute([$usuario_id]);
+    
+    $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    if (!$usuario) {
+        die("Usuário não encontrado");
+    }
+    
+    $aula_atual = (int) $usuario["aula_atual"];
+    
+    $stmt = $pdo->prepare(
+        "SELECT posicao
+         FROM aulas
+         WHERE exercicio_id = ?"
+    );
+    
+    $stmt->execute([$exercicioId]);
+    
+    $aula = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    if (!$aula) {
+        die("Aula não encontrada");
+    }
+    
+    if ((int) $aula["posicao"] > $aula_atual) {
+        header("Location: aulas.php");
+        exit;
+    }
     $stmt = $pdo->prepare("SELECT * FROM exercicios WHERE id = ?");
     $stmt->execute([$exercicioId]);
     $exercicio = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -15,7 +57,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Java School | Editor</title>
+    <title>Editor</title>
     <link rel="stylesheet" href="css/style.css">
     <!-- Monaco Editor via CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.39.0/min/vs/loader.min.js"></script>
@@ -48,7 +90,6 @@
 
         <div class="console" style="color: white;" id="output"></div>
     </div>
-
-    <script type="module" src="js/editor.js"></script>
+<script type="module" src="js/editor.js?v=2"></script>
 </body>
 </html>

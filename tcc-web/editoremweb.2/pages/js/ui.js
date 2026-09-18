@@ -41,14 +41,30 @@ export function getEditorValue() {
   return monacoEditor ? monacoEditor.getValue() : "";
 }
 
-// Alterna o estado de carregamento e trava/destrava os botões
 export function setUIBusy(isBusy) {
-    loading.style.display = isBusy ? "flex" : "none";
-    runButton.disabled = isBusy;
-    verifyButton.disabled = isBusy;
+    const {
+        runButton,
+        verifyButton,
+        loading
+    } = getElements();
+
+    if (loading) {
+        loading.style.display = isBusy ? "flex" : "none";
+    }
+
+    if (runButton) {
+        runButton.disabled = isBusy;
+    }
+
+    if (verifyButton) {
+        verifyButton.disabled = isBusy;
+    }
 }
 
-// Escreve o texto de resposta na caixa do console
 export function setOutput(texto) {
-    output.textContent = texto;
+    const { output } = getElements();
+
+    if (output) {
+        output.textContent = texto;
+    }
 }

@@ -12,16 +12,16 @@ if (empty($email) || empty($senha)) {
 }
 
 $stmt = $pdo->prepare(
-'SELECCT id, nome, $senha
+'SELECT id, nome, senha
 FROM usuarios
-WHERE email = :email'
+WHERE email = ?'
 );
 
-$stmt->execute(['email' => $email]);
+$stmt->execute([$email]);
 
 $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
-if(!usuario || !password_verify($senha, $usuario['senha'])) {
+if(!$usuario || !password_verify($senha, $usuario['senha'])) {
     header('Location: ../pages/login.php?erro=credenciais');
     exit;
 }

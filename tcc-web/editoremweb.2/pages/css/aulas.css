@@ -1,0 +1,25 @@
+body {
+    background: white;
+    color: black;
+    font-family: Arial;
+    padding: 40px;
+}
+
+h1 {
+    margin-bottom: 30px;
+}
+.aula {
+    display: block;
+}
+
+.aula.concluida {
+    /* completed Aula */
+}
+
+.aula.afazer {
+    /* current Aula */
+}
+
+.aula_fechada {
+    /* locked Aula */
+}

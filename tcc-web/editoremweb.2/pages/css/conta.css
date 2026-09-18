@@ -1,0 +1,95 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+}
+
+.conta-container {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.conta-box {
+    width: 100%;
+    max-width: 400px;
+
+    padding: 30px;
+
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.conta-box h1 {
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+.conta-box form {
+    display: flex;
+    flex-direction: column;
+}
+
+.conta-box label {
+    margin-bottom: 6px;
+}
+
+.conta-box input {
+    padding: 10px;
+    margin-bottom: 18px;
+
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.conta-box button,
+.botao {
+    padding: 10px;
+
+    border: none;
+    border-radius: 4px;
+
+    background: #222;
+    color: white;
+
+    text-decoration: none;
+    text-align: center;
+
+    cursor: pointer;
+}
+
+.conta-link {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.conta-link a {
+    color: #222;
+}
+
+.erro {
+    padding: 10px;
+
+    margin-bottom: 15px;
+
+    border: 1px solid #e0aaaa;
+    background: #ffeaea;
+
+    color: #a00000;
+}
+
+.sair {
+    display: block;
+
+    margin-top: 20px;
+
+    color: #a00000;
+    text-align: center;
+}

@@ -1,13 +1,30 @@
 <?php
 
 require_once "../backend/database.php";
+require_once "../backend/sessao.php";
 
-$stmt = $pdo->prepare("SELECT * FROM exercicios");
+precisalogar();
+
+$nome = pegarnomeusuario();
+$usuarioid = pegarusuarioid();
+
+$stmt = $pdo->prepare("SELECT aula_atual FROM usuarios WHERE id =  ?");
+
+$stmt->execute([$usuarioid]);
+$usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+if(!$usuario){
+    header("Location: ../backend/logout.php");
+    exit;
+}
+
+$aula_atual = (int) $usuario["aula_atual"];
+
+$stmt = $pdo->prepare("SELECT * FROM aulas ORDER BY posicao ASC");
 
 $stmt->execute();
 //pdo::fetch_assoc faz com que os dados sejam
 // retornados como um array acessado pelos nomes das colunas
-$exercicios = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$aulas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 <!DOCTYPE html>
@@ -17,37 +34,64 @@ $exercicios = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <meta charset="UTF-8">
 
-    <title>Java School | Tarefas</title>
-    <link rel="stylesheet" href="css/tarefas.css">
+    <title>Aulas</title>
 
+    <link rel="stylesheet" href="css/aulas.css">
+ 
 </head>
 
 <body>
+    <a href="usuario.php">
+        <?= htmlspecialchars($nome) ?>
+    </a>
+<?php foreach ($aulas as $a): ?>
 
-    <h1>Exercícios de Java</h1>
+    <?php
+    $posicao = (int) $a["posicao"];
 
-    <div class="tasks">
+    $concluido = $posicao < $aula_atual;
+    $afazer = $posicao === $aula_atual;
+    $fechada = $posicao > $aula_atual;
+    ?>
 
-    <?php foreach ($exercicios as $t): ?>
+    <?php if ($concluido || $afazer): ?>
+    <a class="aula <?= $concluido ? "concluida" : "afazer" ?>" href="aula.php?id=<?= $a["id"]?>">
 
-    <a
-        class = "task"
-        href="index.php?p=<?= $t["id"]?>"
-    >
+    <?php else: ?>
 
-        <div class="task-title">
-            <?= htmlspecialchars($t["titulo"]) ?>
-        </div>
+   <div class="aula_fechada">
 
-        <div class="task-description">
-            <?= htmlspecialchars($t["descricao"]) ?>
-        </div>
+    <?php endif; ?>
+
+    <h2><?= htmlspecialchars($a["titulo"]) ?></h2>
+
+
+    <?php if ($concluido): ?>
+
+    <p>concluída</p>
+
+    <?php elseif ($afazer): ?>
+
+    <p>a fazer</p>
+
+    <?php else: ?>
+
+    <p>fechada</p>
+
+    <?php endif; ?>
+
+
+    <?php if ($afazer || $concluido): ?>
 
     </a>
 
-    <?php endforeach; ?>
+    <?php else: ?>
 
     </div>
+
+    <?php endif; ?>
+
+<?php endforeach; ?>
 
 </body>
 

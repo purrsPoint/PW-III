@@ -1,7 +1,6 @@
 <?php
-
 require_once __DIR__ . '/database.php';
-require_once __DIR__ . '/session.php';
+require_once __DIR__ . '/sessao.php';
 
 $nome = trim($_POST['nome'] ?? '');
 $email = trim($_POST['email'] ?? '');
@@ -42,6 +41,7 @@ $stmt->execute([$nome, $email, $senhaHash]);
 $usuarioId = $pdo->lastInsertId();
 
 $_SESSION['usuario_id'] = (int) $usuarioId;
-$_SESSION['nome'] = $nome;
+$_SESSION['usuario_nome'] = $nome;
 
 header('Location: ../pages/aulas.php');
+exit;

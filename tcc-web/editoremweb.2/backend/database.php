@@ -6,7 +6,7 @@ $usuario = "root";
 $senha = "";
 
 $pdo = new PDO(
-"mysql:host=$host;dbname=$banco",
+"mysql:host=$host;dbname=$banco;charset=utf8mb4",
 $usuario,
 $senha
 );
